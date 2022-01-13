@@ -1,19 +1,16 @@
 import sys
 import subprocess
 import re
-import math
 
-descricao = sys.argv[1]
-
-if re.search(r'^name=[^ \n]+$', sys.argv[1]) == None: descricao = input('Qual a descição do seu commit? ')
-else: descricao = sys.argv[1][5:math.inf]
+descricao = ''
+for i in sys.argv:
+    if re.search(r'^name=[^ \n]+$', i) == None and descricao != '': descricao = input('Qual a descição do seu commit? ')
+    else: descricao = i[5:99999]
 
 print(descricao)
 
-branch = input('Qual a branch? ')
-
 subprocess.run('git add .')
 subprocess.run(f'git commit -m "{descricao}"')
-subprocess.run(f'git push -u origin {branch}')
+subprocess.run(f'git push -u origin main')
 
 print(sys.argv[1])
