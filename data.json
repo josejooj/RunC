@@ -1,6 +1,6 @@
 {
     "FirstTime": false,
-    "CaminhoDiretorio": "C:/Users/grimm/Desktop/projetos/aprendendo py/rundir/representativo",
+    "CaminhoDiretorio": "C:/Users/grimm/Desktop/projetos/clleitobot v13 ts/runpy",
     "CaminhoOutput": "C:/Users/grimm/Desktop/projetos/aprendendo py/rundir/representativo/output.txt",
-    "ComandoRun": "python main.py"
+    "ComandoRun": "node ."
 }

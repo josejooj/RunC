@@ -1,9 +1,10 @@
 from database import pegarJson, salvarJson
+from Interval import setInterval as setI
 import PySimpleGUI as sg
 import subprocess
-import threading
 import re
 import os
+import signal
 
 data = pegarJson()
 
@@ -36,34 +37,39 @@ class Application():
         self.window = sg.Window('RunDir', layout, resizable=True, return_keyboard_events=False)
         self.window.read(timeout=1)
         self.process = subprocess.Popen('cmd')
-        self.processRuning = 0
+        self.interval = setI(10, str)
+        self.interval.cancel()
+        self.terminal = ''
         self.loop()
     
     def _RODAR_(self):
-        self.process = subprocess.Popen(f"{data['ComandoRun']}", cwd=data['CaminhoDiretorio'])
-        formated = str(self.value['-CMD-']).replace('Status: Parado', 'Status: Rodando')
-        self.window['-CMD-'].update(value=formated)
+        self.process = subprocess.Popen(f"{data['ComandoRun']}", shell=True, text=True, cwd=data['CaminhoDiretorio'], stdout=subprocess.PIPE)
+        self.interval = setI(0.2, self.checkProcess)
+        self.window['-CMD-'].update(value=self.terminal)
 
     def _PARAR_(self):
-        if(self.process.poll() == None): self.process.kill()
-        formated = str(self.value['-CMD-']).replace('Status: Rodando', 'Status: Parado')
-        self.window['-CMD-'].update(value=formated)
+        self.process.send_signal('KeyboardInterrupt')
+        self.interval.cancel()
     
     def loop(self):
         while True:
             self.event, self.value = self.window.read()
             if self.event in (None, sg.WINDOW_CLOSED):
+                if self.process.poll() == None: self._PARAR_()
                 break
             elif self.event == '-RODAR-': self._RODAR_()
             elif self.event == '-PARAR-': self._PARAR_()
             elif self.event == 'Caminho do diretório': self._CAMINHO_DO_DIRETORIO_()
-            elif self.event == 'Caminho do Output': self._CAMINHO_DO_ARQUIVO_()
+            elif self.event == 'Caminho do Output': self._CAMINHO_DO_ARQUIVO_()            
         
         self.window.close()
 
     def checkProcess(self):
-        if self.process.poll() != None and self.processRuning != 0:
+        if(self.process.poll() != None):
             self._PARAR_()
+        a = self.process.stdout.readline()
+        self.terminal += a
+        self.window['-CMD-'].update(value=self.terminal)
 
     def _CAMINHO_DO_DIRETORIO_(self):
         data = pegarJson()
