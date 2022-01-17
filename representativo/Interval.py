@@ -1,6 +1,6 @@
 import threading
 
-class setInterval():
+class setInterval:
     def __init__(self,time,action) :
         self.time = time
         self.action = action
@@ -14,4 +14,3 @@ class setInterval():
 
     def cancel(self) :
         self.canceled = 1
-        return 0

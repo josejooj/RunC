@@ -1,15 +1,14 @@
-import subprocess
-import io
-#def ping():
-#    return str(subprocess.run(["exit", "1"], shell=True)).replace('\\n', '\n').replace('\\r', '')
+from Interval import setInterval
 
-#a = ping()
-#arquivo = open("pings.txt", "w")
-#arquivo.write(f'{a}\n')
-#print(f'{a}\n')]
+class toTest():
+    def __init__(self):
+        self.interval = setInterval(1, self.func)
+        self.i = 0
 
-proc = subprocess.Popen('node .', cwd='C:\\Users\\grimm\\Desktop\\projetos\\clleitobot v13 ts\\runpy', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    def func(self):
+        print(self.i)
+        self.i = self.i + 1
+        if self.i == 10:
+            self.interval.cancel()
 
-print('code: ' + str(proc.returncode))
-
-proc.kill()
+toTest()

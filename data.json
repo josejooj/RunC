@@ -1,6 +1,20 @@
 {
     "FirstTime": false,
-    "CaminhoDiretorio": "C:/Users/grimm/Desktop/projetos/clleitobot v13 ts/runpy",
+    "CaminhoDiretorio": "C:/Users/USER/Documents/rundir.py/representativo",
     "CaminhoOutput": "C:/Users/grimm/Desktop/projetos/aprendendo py/rundir/representativo/output.txt",
-    "ComandoRun": "node ."
+    "ComandoRun": "python main.py",
+    "arquivo": {
+        "caminho": "C:/Users/USER/Documents/rundir.py/representativo/main.cpp",
+        "comando_run": "g++ ${arquivo}"
+    },
+    "Compilador": {
+        "nome": "GNU GCC Compiler",
+        "comando_C": "gcc",
+        "comando_C++": "g++"
+    },
+    "compilador": {
+        "nome": "GNU GCC Compiler",
+        "comando_C": "gcc",
+        "comando_C++": "g++"
+    }
 }
