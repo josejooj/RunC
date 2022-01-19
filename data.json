@@ -1,20 +1,23 @@
 {
     "FirstTime": false,
-    "CaminhoDiretorio": "C:/Users/USER/Documents/rundir.py/representativo",
-    "CaminhoOutput": "C:/Users/grimm/Desktop/projetos/aprendendo py/rundir/representativo/output.txt",
-    "ComandoRun": "python main.py",
-    "arquivo": {
-        "caminho": "C:/Users/USER/Documents/rundir.py/representativo/main.cpp",
-        "comando_run": "g++ ${arquivo}"
-    },
-    "Compilador": {
-        "nome": "GNU GCC Compiler",
-        "comando_C": "gcc",
-        "comando_C++": "g++"
+    "projeto": {
+        "caminho": "C:/Users/grimm/Desktop/projetos/aprendendo py/src/representativo",
+        "comando_run": [
+            [
+                "C++",
+                "g++",
+                "-std=c++11"
+            ],
+            "main.cpp"
+        ],
+        "auto_open": false
     },
     "compilador": {
         "nome": "GNU GCC Compiler",
+        "argumento_versao": "--version",
         "comando_C": "gcc",
-        "comando_C++": "g++"
+        "argumento_C": "",
+        "comando_C++": "g++",
+        "argumento_C++": "-std=c++11"
     }
 }
