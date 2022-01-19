@@ -1,16 +1,25 @@
-import sys
+from datetime import datetime
 import subprocess
-import re
+import os
 
-descricao = ''
-for i in sys.argv:
-    if re.search(r'^name=[^ \n]+$', i) == None and descricao != '': descricao = input('Qual a descição do seu commit? ')
-    else: descricao = i[5:99999]
+def ask(string: str):
+    os.system('CLS')
+    print('     ##############################################')
+    print('     #                                            #')
+    print('     #        Github commit system v1.0           #')
+    print('     #           Made by cleiton2040              #')
+    print('     #                                            #')
+    print('     ##############################################\n')
+    return input(f"     {string}\n   > ")
+
+data = datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
+user = ask("Qual o seu nome de usuário?")
+desc = ask("Qual a descrição do seu commit?")
+descricao = f"[{data}] - Commit requested by \"{user}\""
+if desc: descricao += f" (\"{desc}\")"
 
 print(descricao)
 
-subprocess.run('git add .')
+subprocess.run(f'git add .')
 subprocess.run(f'git commit -m "{descricao}"')
 subprocess.run(f'git push -u origin main')
-
-print(sys.argv[1])
