@@ -1,23 +1,2 @@
 {
-    "FirstTime": false,
-    "projeto": {
-        "caminho": "C:/Users/USER/Documents/rundir.py/representativo",
-        "comando_run": [
-            [
-                "C++",
-                "g++",
-                "-std=c++11"
-            ],
-            "main.cpp"
-        ],
-        "auto_open": false
-    },
-    "compilador": {
-        "nome": "GNU GCC Compiler",
-        "argumento_versao": "--version",
-        "comando_C": "gcc",
-        "argumento_C": "",
-        "comando_C++": "g++",
-        "argumento_C++": "-std=c++11"
-    }
 }
